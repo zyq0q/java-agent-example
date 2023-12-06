@@ -5,20 +5,16 @@ Sample maven project containing a Java agent and examples of bytecode manipulati
 ## Build
 
 ```
-$ # From the root dir
-$ mvn package
+$ # From the agent dir
+$ mvn clean install
+error可忽略
 ```
 
 ## Run
 
 ```
-From the root dir
-
-Without agent
-$ java -jar prog-test\target\prog-test-0.1-SNAPSHOT.jar
-
 
 With agent
-$ java -javaagent:agent/target/agent-0.1-SNAPSHOT.jar -jar prog-test\target\prog-test-0.1-SNAPSHOT.jar
-
+$ java -Xms8g -Xms8g -Xmn1g -javaagent:agent/target/agent-1.0.jar=7,0,80 -jar yourApplication.jar 
+参数说明：Xmn根据实际情况调整，7为cpu物理核数，建议最大配置n-1，否则机器会卡死，80为占用老年代内存空间的大小
 
